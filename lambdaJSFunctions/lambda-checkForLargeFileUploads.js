@@ -3,7 +3,7 @@ console.log('Loading function');
 var aws = require('aws-sdk');
 var s3 = new aws.S3({ apiVersion: '2006-03-01' });
 var sns = new aws.SNS();
-var topicARN = 'arn:aws:sns:us-east-1:683830609677:ctlWDAlerts';
+var topicARN = 'YOUR TOPIC ARN GOES HERE';
 
 exports.handler = function(event, context) {
 
@@ -11,7 +11,7 @@ exports.handler = function(event, context) {
     var bucket = event.Records[0].s3.bucket.name;
     var fileName = event.Records[0].s3.object.key;
     var fileSize = event.Records[0].s3.object.size;
-    
+
     // Notify SNS topic if the file is larger than 20MB
     if ( fileSize > 20480000) {
         console.log("Notifying SNS of large upload. File: " + fileName);
